@@ -53,4 +53,27 @@ defmodule StringAndBinaries do
   defp apply_operator("-", a, b), do: a - b
   defp apply_operator("*", a, b), do: a * b
   defp apply_operator("/", a, b), do: a / b
+
+  # Exercise 4
+  def center(word_list) do
+    longest_word_len =
+      word_list
+      |> Enum.max_by(fn x -> String.length(x) end)
+      |> String.length()
+
+    word_list
+    |> Enum.each(fn word ->
+      word_len = String.length(word)
+      total_padding = longest_word_len - word_len
+      left_pad = div(total_padding, 2)
+      right_pad = total_padding - left_pad
+
+      centered =
+        word
+        |> String.pad_leading(left_pad + word_len)
+        |> String.pad_trailing(longest_word_len)
+
+      IO.puts(centered)
+    end)
+  end
 end
