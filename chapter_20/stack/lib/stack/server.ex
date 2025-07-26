@@ -2,6 +2,8 @@ defmodule Stack.Server do
   use GenServer
   alias Stack.Stash
 
+  @vsn "0"
+
   def start_link(_) do
     GenServer.start_link(__MODULE__, nil, name: __MODULE__, debug: [:trace])
   end
@@ -9,6 +11,11 @@ defmodule Stack.Server do
   @impl true
   def init(_) do
     {:ok, Stash.get()}
+  end
+
+  @impl true
+  def handle_call(:pop, _from, []) do
+    {:reply, [], []}
   end
 
   @impl true

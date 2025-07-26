@@ -1,6 +1,8 @@
 defmodule Sequence.Server do
   use GenServer
 
+  @vsn "0"
+
   # External API
   def start_link(_) do
     GenServer.start_link(__MODULE__, nil, name: __MODULE__)
