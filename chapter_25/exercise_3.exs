@@ -19,8 +19,9 @@ defmodule MySigils do
 
     case does_first_row_contain_headers?(csv) do
       {:headers, headers, rows} ->
-        headers_as_atoms = headers |> Enum.map(fn x -> String.to_atom(x) end)
-        format_result(headers_as_atoms, rows)
+        headers
+        |> Enum.map(fn x -> String.to_atom(x) end)
+        |> format_result(rows)
 
       :no_headers ->
         format_result(csv)
